@@ -1,0 +1,233 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    LAMBDA
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> LPAREN explist RPAREN
+Rule 2     expression -> QUOTE expression
+Rule 3     expression -> SYMBOL
+Rule 4     expression -> INTEGER
+Rule 5     expression -> FLOAT
+Rule 6     expression -> STRING
+Rule 7     explist -> expression
+Rule 8     explist -> explist expression
+
+Terminals, with rules where they appear
+
+FLOAT                : 5
+INTEGER              : 4
+LAMBDA               : 
+LPAREN               : 1
+QUOTE                : 2
+RPAREN               : 1
+STRING               : 6
+SYMBOL               : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+explist              : 1 8
+expression           : 2 7 8 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . LPAREN explist RPAREN
+    (2) expression -> . QUOTE expression
+    (3) expression -> . SYMBOL
+    (4) expression -> . INTEGER
+    (5) expression -> . FLOAT
+    (6) expression -> . STRING
+
+    LPAREN          shift and go to state 5
+    QUOTE           shift and go to state 2
+    SYMBOL          shift and go to state 3
+    INTEGER         shift and go to state 6
+    FLOAT           shift and go to state 4
+    STRING          shift and go to state 1
+
+    expression                     shift and go to state 7
+
+state 1
+
+    (6) expression -> STRING .
+
+    RPAREN          reduce using rule 6 (expression -> STRING .)
+    LPAREN          reduce using rule 6 (expression -> STRING .)
+    QUOTE           reduce using rule 6 (expression -> STRING .)
+    SYMBOL          reduce using rule 6 (expression -> STRING .)
+    INTEGER         reduce using rule 6 (expression -> STRING .)
+    FLOAT           reduce using rule 6 (expression -> STRING .)
+    STRING          reduce using rule 6 (expression -> STRING .)
+    $end            reduce using rule 6 (expression -> STRING .)
+
+
+state 2
+
+    (2) expression -> QUOTE . expression
+    (1) expression -> . LPAREN explist RPAREN
+    (2) expression -> . QUOTE expression
+    (3) expression -> . SYMBOL
+    (4) expression -> . INTEGER
+    (5) expression -> . FLOAT
+    (6) expression -> . STRING
+
+    LPAREN          shift and go to state 5
+    QUOTE           shift and go to state 2
+    SYMBOL          shift and go to state 3
+    INTEGER         shift and go to state 6
+    FLOAT           shift and go to state 4
+    STRING          shift and go to state 1
+
+    expression                     shift and go to state 8
+
+state 3
+
+    (3) expression -> SYMBOL .
+
+    RPAREN          reduce using rule 3 (expression -> SYMBOL .)
+    LPAREN          reduce using rule 3 (expression -> SYMBOL .)
+    QUOTE           reduce using rule 3 (expression -> SYMBOL .)
+    SYMBOL          reduce using rule 3 (expression -> SYMBOL .)
+    INTEGER         reduce using rule 3 (expression -> SYMBOL .)
+    FLOAT           reduce using rule 3 (expression -> SYMBOL .)
+    STRING          reduce using rule 3 (expression -> SYMBOL .)
+    $end            reduce using rule 3 (expression -> SYMBOL .)
+
+
+state 4
+
+    (5) expression -> FLOAT .
+
+    RPAREN          reduce using rule 5 (expression -> FLOAT .)
+    LPAREN          reduce using rule 5 (expression -> FLOAT .)
+    QUOTE           reduce using rule 5 (expression -> FLOAT .)
+    SYMBOL          reduce using rule 5 (expression -> FLOAT .)
+    INTEGER         reduce using rule 5 (expression -> FLOAT .)
+    FLOAT           reduce using rule 5 (expression -> FLOAT .)
+    STRING          reduce using rule 5 (expression -> FLOAT .)
+    $end            reduce using rule 5 (expression -> FLOAT .)
+
+
+state 5
+
+    (1) expression -> LPAREN . explist RPAREN
+    (7) explist -> . expression
+    (8) explist -> . explist expression
+    (1) expression -> . LPAREN explist RPAREN
+    (2) expression -> . QUOTE expression
+    (3) expression -> . SYMBOL
+    (4) expression -> . INTEGER
+    (5) expression -> . FLOAT
+    (6) expression -> . STRING
+
+    LPAREN          shift and go to state 5
+    QUOTE           shift and go to state 2
+    SYMBOL          shift and go to state 3
+    INTEGER         shift and go to state 6
+    FLOAT           shift and go to state 4
+    STRING          shift and go to state 1
+
+    explist                        shift and go to state 9
+    expression                     shift and go to state 10
+
+state 6
+
+    (4) expression -> INTEGER .
+
+    RPAREN          reduce using rule 4 (expression -> INTEGER .)
+    LPAREN          reduce using rule 4 (expression -> INTEGER .)
+    QUOTE           reduce using rule 4 (expression -> INTEGER .)
+    SYMBOL          reduce using rule 4 (expression -> INTEGER .)
+    INTEGER         reduce using rule 4 (expression -> INTEGER .)
+    FLOAT           reduce using rule 4 (expression -> INTEGER .)
+    STRING          reduce using rule 4 (expression -> INTEGER .)
+    $end            reduce using rule 4 (expression -> INTEGER .)
+
+
+state 7
+
+    (0) S' -> expression .
+
+
+
+state 8
+
+    (2) expression -> QUOTE expression .
+
+    RPAREN          reduce using rule 2 (expression -> QUOTE expression .)
+    LPAREN          reduce using rule 2 (expression -> QUOTE expression .)
+    QUOTE           reduce using rule 2 (expression -> QUOTE expression .)
+    SYMBOL          reduce using rule 2 (expression -> QUOTE expression .)
+    INTEGER         reduce using rule 2 (expression -> QUOTE expression .)
+    FLOAT           reduce using rule 2 (expression -> QUOTE expression .)
+    STRING          reduce using rule 2 (expression -> QUOTE expression .)
+    $end            reduce using rule 2 (expression -> QUOTE expression .)
+
+
+state 9
+
+    (1) expression -> LPAREN explist . RPAREN
+    (8) explist -> explist . expression
+    (1) expression -> . LPAREN explist RPAREN
+    (2) expression -> . QUOTE expression
+    (3) expression -> . SYMBOL
+    (4) expression -> . INTEGER
+    (5) expression -> . FLOAT
+    (6) expression -> . STRING
+
+    RPAREN          shift and go to state 11
+    LPAREN          shift and go to state 5
+    QUOTE           shift and go to state 2
+    SYMBOL          shift and go to state 3
+    INTEGER         shift and go to state 6
+    FLOAT           shift and go to state 4
+    STRING          shift and go to state 1
+
+    expression                     shift and go to state 12
+
+state 10
+
+    (7) explist -> expression .
+
+    RPAREN          reduce using rule 7 (explist -> expression .)
+    LPAREN          reduce using rule 7 (explist -> expression .)
+    QUOTE           reduce using rule 7 (explist -> expression .)
+    SYMBOL          reduce using rule 7 (explist -> expression .)
+    INTEGER         reduce using rule 7 (explist -> expression .)
+    FLOAT           reduce using rule 7 (explist -> expression .)
+    STRING          reduce using rule 7 (explist -> expression .)
+
+
+state 11
+
+    (1) expression -> LPAREN explist RPAREN .
+
+    RPAREN          reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+    LPAREN          reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+    QUOTE           reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+    SYMBOL          reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+    INTEGER         reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+    FLOAT           reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+    STRING          reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+    $end            reduce using rule 1 (expression -> LPAREN explist RPAREN .)
+
+
+state 12
+
+    (8) explist -> explist expression .
+
+    RPAREN          reduce using rule 8 (explist -> explist expression .)
+    LPAREN          reduce using rule 8 (explist -> explist expression .)
+    QUOTE           reduce using rule 8 (explist -> explist expression .)
+    SYMBOL          reduce using rule 8 (explist -> explist expression .)
+    INTEGER         reduce using rule 8 (explist -> explist expression .)
+    FLOAT           reduce using rule 8 (explist -> explist expression .)
+    STRING          reduce using rule 8 (explist -> explist expression .)
+
