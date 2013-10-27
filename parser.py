@@ -15,6 +15,9 @@ def if_exp(args):
     else:
         return eval_exp(args[2])
 
+def def_exp(args):
+    global_vars[args[0][1]] = eval_exp(args[1])
+
 ##global_vars = {
 ##        'print' : lambda xs: eval_exp(xs[0]),
 ##        '+' : lambda xs: reduce(lambda x,y:eval_exp(x)+eval_exp(y), xs),
@@ -35,7 +38,8 @@ global_vars = {
         '/' : lambda xs: reduce(lambda x,y:eval_exp(x)/eval_exp(y), xs),
         'mul' : lambda xs: reduce(lambda x,y:eval_exp(x)*eval_exp(y), xs),
         'div' : lambda xs: reduce(lambda x,y:eval_exp(x)/eval_exp(y), xs),
-        'if' : if_exp
+        'if' : if_exp,
+        'def' : def_exp,
                  
 }
 
@@ -59,6 +63,7 @@ def eval_exp(p):
     elif type == 'string':
         return p[1]
     elif type == 'symbol':
+        print global_vars[type_value(p)]
         return global_vars[type_value(p)]
     elif type == 'list':
         p_fun = value[0]
@@ -141,6 +146,6 @@ if __name__ == '__main__':
         expr = raw_input('>')
         #print expr
         resl = yacc.parse(expr)
-        print resl
+        #print resl
         eval_exp(resl)
         
